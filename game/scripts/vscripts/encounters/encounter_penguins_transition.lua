@@ -319,7 +319,7 @@ function CMapEncounter_PenguinsTransition:OnPlayerRidePenguin( nPlayerID, hPengu
 		end
 	end
 
-	if nSaddledPlayers >= nPlayerCount  then
+	if nSaddledPlayers >= math.min(4, nPlayerCount) then
 		self:DisableBlocker()
 		self:StartBonusRound( self.flPenguinTimeLimit )
 	end

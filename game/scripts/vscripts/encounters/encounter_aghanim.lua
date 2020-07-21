@@ -82,7 +82,7 @@ function CMapEncounter_Aghanim:OnTriggerStartTouch( event )
 		self.nHeroOnTrigger4 = 1
 	end
 	local hHeroes = HeroList:GetAllHeroes()
-	local nTotalHeroes = #hHeroes
+	local nTotalHeroes = math.min(4, #hHeroes)
 	self.nPlayersReady = self.nHeroOnTrigger1 + self.nHeroOnTrigger2 + self.nHeroOnTrigger3 + self.nHeroOnTrigger4
 	if self.nPlayersReady == nTotalHeroes then
 

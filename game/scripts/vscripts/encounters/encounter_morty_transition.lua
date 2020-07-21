@@ -192,7 +192,7 @@ function CMapEncounter_MortyTransition:OnPlayerRideMorty( nPlayerID, hMorty )
 		end
 	end
 
-	if nSaddledPlayers >= nPlayerCount  then
+	if nSaddledPlayers >= math.min(4, nPlayerCount) then
 		self:StartBonusRound( self.flMortyTimeLimit )
 		for _,hMorty in pairs ( self.Morties ) do
 			hMorty:RemoveModifierByName( "modifier_morty_start_passive" )

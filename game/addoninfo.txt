@@ -1,16 +1,33 @@
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
 	MinimalPrecache = 1
-	EventGame = 1
+	EventGame = false
 	map_options = 
 	[
 		{
-			MaxPlayers = 4
+			MaxPlayers = 6
 			map = "main"
 		},
-		{
-			MaxPlayers = 4
-			map = "aghanim"
-		},
 	]
+	HideInTools = false
+	IsPlayable = true
+	IsTemplate = false
+	maps = 
+	[
+		"main",
+	]
+	CheckAFKPlayers = false
+	DefaultMap = "main"
+	Default_Keys = [  ]
+	DisableIK = false
+	EnablePickRules = false
+	hero_picker = 
+	{
+	}
+	HeroGuidesSupported = true
+	ForceDefaultGuide = true
+	MinPlayers = 1
+	MaxPlayers = 10
+	PenaltiesEnabled = false
+	TeamCount = -1
 }

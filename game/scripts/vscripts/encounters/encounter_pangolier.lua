@@ -185,7 +185,7 @@ function CMapEncounter_Pangolier:OnTriggerStartTouch( event )
 		self.nPlayersReady = self.nHeroOnTrigger1 + self.nHeroOnTrigger2 + self.nHeroOnTrigger3 + self.nHeroOnTrigger4
 		local vecPlayers = GameRules.Aghanim:GetConnectedPlayers()
 		if #vecPlayers > 0 then
-			if self.nPlayersReady == #vecPlayers then
+			if self.nPlayersReady == math.min(4, #vecPlayers) then
 				--print("All players ready!")
 				self.bAllButtonsReady = true
 				self:GetSpawner( "spawner_peon" ):SpawnUnits()
