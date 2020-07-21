@@ -121,7 +121,7 @@ function CMapEncounter_StartingRoom:OnThink()
 		end
 		self:UpdateEncounterObjective( "objective_select_aghanims_fragmants", nNumSelected, nil )
 
-		if #vecPlayers > 0 and nNumSelected == #vecPlayers then
+		if #vecPlayers > 0 and nNumSelected >= #vecPlayers then
 			self:GetRoom().bSpawnGroupReady = true
 			self.bRewardsSelected = true
 		end
@@ -135,7 +135,7 @@ function CMapEncounter_StartingRoom:InitializeObjectives()
 	--CMapEncounter.InitializeObjectives( self )
 
 	self:AddEncounterObjective( "objective_stand_on_buttons", 0, 4 )
-	self:AddEncounterObjective( "objective_select_aghanims_fragmants", 0, 4 )
+	self:AddEncounterObjective( "objective_select_aghanims_fragmants", 0, 6 )
 
 end
 
@@ -162,7 +162,7 @@ function CMapEncounter_StartingRoom:OnTriggerStartTouch( event )
 
 		local vecPlayers = GameRules.Aghanim:GetConnectedPlayers()
 		if #vecPlayers > 0 then
-			if self.nPlayersReady == #vecPlayers then
+			if self.nPlayersReady == math.min(4, #vecPlayers) then
 
 				self.bAllButtonsReady = true
 				GameRules.Aghanim:SetExpeditionStartTime( GameRules:GetGameTime() )

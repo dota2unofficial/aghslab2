@@ -166,7 +166,7 @@ function CAghanim:InitGameMode()
 	GameRules:GetGameModeEntity():SetAnnouncerDisabled( true )
 	GameRules:SetCustomGameSetupTimeout( 0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 )
-	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 4 )
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 6 )
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
 	GameRules:SetTimeOfDay( 0.25 )
 	GameRules:SetStrategyTime( 0.0 )
@@ -189,6 +189,10 @@ function CAghanim:InitGameMode()
  	GameRules:GetGameModeEntity():SetMinimumAttackSpeed( 0.4 )
  	GameRules:GetGameModeEntity():SetNeutralStashTeamViewOnlyEnabled( true )
  	GameRules:GetGameModeEntity():SetNeutralItemHideUndiscoveredEnabled( true )
+
+ 	if IsInToolsMode() then
+ 		GameRules:SetHeroSelectionTime(7)
+ 	end
 
  	--Temp for tesitng new lives rules
  	if AGHANIM_TIMED_RESPAWN_MODE == true then
@@ -646,7 +650,9 @@ end
 --------------------------------------------------------------------------------
 
 function CAghanim:OnHeroSelectionStarted()
-
+	if IsInToolsMode() then
+ 		SendToServerConsole("dota_bot_populate")
+ 	end
 end
 
 --------------------------------------------------------------------------------
@@ -2120,7 +2126,7 @@ function CAghanim:DetermineRewardSelectionState()
 	local rewardState = {}
 	for i=1,#vecPlayerIDs do
 		local nPlayerID = vecPlayerIDs[i]
-		local bHasChosen = ( netTable[ tostring(nPlayerID) ] ~= nil )
+		local bHasChosen = ( netTable[ tostring(nPlayerID) ] ~= nil or PlayerResource:IsFakeClient(nPlayerID))
 		rewardState[ tostring(nPlayerID) ] = bHasChosen
 	end
 

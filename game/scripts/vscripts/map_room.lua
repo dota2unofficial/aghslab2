@@ -215,6 +215,10 @@ end
 function CMapRoom:FindAllEntitiesInRoomByName( szEntityName, bWarnIfNotFound )
 
 	local hEntityList = Entities:FindAllByName( szEntityName )
+	print("entity list for this room:")
+	for _, entity in pairs(hEntityList) do
+		print(entity:GetName())
+	end
 
 	for i=#hEntityList, 1, -1 do
 		if hEntityList[i]:GetSpawnGroupHandle() ~= self:GetSpawnGroupHandle() then
