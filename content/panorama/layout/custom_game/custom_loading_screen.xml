@@ -1,0 +1,21 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/custom_loading_screen.vcss_c" />
+	</styles>
+	<Panel class="AghanimLoadingRoot">
+		<Panel id="seq" />
+		<Panel id="SplashArtcontainer">
+			<Panel id="SplashArt"/>
+		</Panel>
+		<!-- <Panel id="TitlePanel">
+			<Panel class="TitleFx">
+
+				<Label text="#addon_game_name" class="CampaignTitle TitleFont Glow Glow2"/>
+				<Label text="#addon_game_name" class="CampaignTitle TitleFont Glow Glow1"/>
+				<Label text="#addon_game_name" class="CampaignTitle TitleFont Rim"/>
+				<Label text="#addon_game_name" class="CampaignTitle"/>
+			</Panel>
+		</Panel> -->
+	</Panel>
+</root>

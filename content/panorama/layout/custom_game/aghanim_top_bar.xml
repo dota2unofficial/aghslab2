@@ -1,0 +1,31 @@
+<root>
+	 <styles>
+	 	<include src="s2r://panorama/styles/custom_game/aghanim_top_bar.vcss_c" />
+	 </styles>
+	 <scripts>
+	 	<include src="s2r://panorama/scripts/custom_game/aghanim_top_bar.vjs_c" />
+	 	<include src="s2r://panorama/scripts/custom_game/party_health_bars.vjs_c" />
+	 </scripts>
+
+  	<Panel class="AghanimTopBar">
+  		<Panel id="MovingOverlay"/>
+  		<Panel id="PlayersBlock" class="LeftRightFlow">
+  			<Panel id="PartyPortraits" class="LeftRightFlow"/>
+   		</Panel>
+
+  		<Panel id="RoshContainer" hittest="false">
+  			<Label id="GameTimer" text="0:00"/>
+        <Panel class="BestRunContainer">
+          <Label id="BestRunInfo" text="#DOTA_TI10_EventGame_BestTimedRun"/>
+          <Label id="BestRunRelInfo" text="#DOTA_TI10_EventGame_BestTimedRunRel"/>
+         </Panel>
+        <Label id="NewPersonalBest" text="#DOTA_TI10_EventGame_NewPersonalBest"/>
+      </Panel>
+
+      <Panel id="EnrageTimerContainer" class="TopBottomFlow">
+       <Label id="EnrageTimerLabel" hittest="false" text="Enrage Timer"/>
+       <ProgressBar hittest="false" id="EnrageTimerProgressBar" min="0" max="100" value="100"/>
+      </Panel>
+
+  	</Panel>
+</root>

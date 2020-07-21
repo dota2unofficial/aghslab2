@@ -1,0 +1,163 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c"/>
+		<include src="s2r://panorama/styles/custom_game/hud_main.vcss_c"/>
+		<include src="s2r://panorama/styles/hud_aghanims_reward.vcss_c"/>
+		<include src="s2r://panorama/styles/custom_game/rewards_shared.vcss_c"/>
+	</styles>
+
+	<scripts>
+		<include src="s2r://panorama/scripts/hud_aghanims_reward.vjs_c" />
+	</scripts>
+
+	<snippets>
+
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_GOLD">
+			<Panel class="RewardsRowContent">	
+				<Panel class="GoldIcon RewardIcon"/>
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+			</Panel>
+		</snippet>
+
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_ITEM">
+			<RadioButton group="RewardRadioButton" class="RewardsRowContent">	
+				<DOTAItemImage id="RewardItemImage" class="RewardIcon" showtooltip="true"/>
+				<Panel class="RewardsContentText">
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+				</Panel>
+				<TextButton id="ConfirmButton" text="CONFIRM"/>
+			</RadioButton>
+		</snippet>
+
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_TEMP_BUFF">
+			<RadioButton group="RewardRadioButton" class="RewardsRowContent">		
+				<DOTAAbilityImage id="RewardAbilityImage"  class="RewardIcon" showtooltip="true"/>
+				<Panel class="RewardsContentText">
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+				</Panel>
+				<TextButton id="ConfirmButton" text="CONFIRM"/>
+			</RadioButton>
+		</snippet>
+
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_AURA">
+			<RadioButton group="RewardRadioButton" class="RewardsRowContent">	
+				<DOTAAbilityImage id="RewardAbilityImage" class="RewardIcon" showtooltip="true"/>
+				<Panel class="RewardsContentText">
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+				</Panel>
+				<TextButton id="ConfirmButton" text="CONFIRM"/>
+			</RadioButton>
+		</snippet>
+
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_ABILITY_UPGRADE">
+			<RadioButton group="RewardRadioButton" class="RewardsRowContent">	
+				<DOTAAbilityImage id="RewardAbilityImage" class="RewardIcon" showtooltip="true"/>
+				<Panel class="RewardsContentText">
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+				</Panel>
+				<TextButton id="ConfirmButton" text="CONFIRM"/>
+			</RadioButton>
+		</snippet>
+
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_EXTRA_LIVES">
+			<RadioButton group="RewardRadioButton" class="RewardsRowContent">	
+				<Panel class="ExtraLifeIcon RewardIcon"/>
+				<Panel class="RewardsContentText">
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+				</Panel>
+				<TextButton id="ConfirmButton" text="CONFIRM"/>
+			</RadioButton>
+		</snippet>
+
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_MINOR_ABILITY_UPGRADE">
+			<RadioButton group="RewardRadioButton" class="RewardsRowContent">	
+				<DOTAAbilityImage id="RewardAbilityImage" class="RewardIcon" showtooltip="true"/>
+				<Panel class="RewardsContentText">
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+				</Panel>
+				<TextButton id="ConfirmButton" text="CONFIRM"/>
+			</RadioButton>
+		</snippet>
+		
+		<snippet name="RewardOptionSnippet_REWARD_TYPE_MINOR_STATS_UPGRADE">
+			<RadioButton group="RewardRadioButton" class="RewardsRowContent">	
+				<Panel id="RewardAbilityImage" class="RewardIcon" showtooltip="true"/>
+				<Panel class="RewardsContentText">
+					<Label html="true" class="RewardName" text="{s:reward_name}"/>
+					<Label html="true" class="RewardDescription" text="{s:reward_description}"/>
+				</Panel>
+				<TextButton id="ConfirmButton" text="CONFIRM"/>
+			</RadioButton>
+		</snippet>
+
+	</snippets>
+
+	<Panel hittest="false" class="CustomHudRoot" >
+		<Panel id="AghanimRewardsHUD" class="Hidden" hittest="true" hittestchildren="true">
+			<Panel id="RewardCloseButton" class="CloseButton" onactivate="ShowAghanimRewardsHUD( true, true )"/>			
+			<!-- <Panel class="GameModeHeaderContainer">
+				<Label id="GameModeHeader" text="#DOTA_HUD_Game_Mode_Header"/>
+			</Panel> -->
+			<Panel class="RewardBody">
+				<Panel class="RewardBodyHeader">
+					<Panel id="EncounterTypeIcon" class="EncounterTypeIconReward" />
+					<Label id="RewardHeader" text="{s:header_rarity}" html="true"/>
+				</Panel>
+				<Panel id="RewardsContainer">
+				</Panel>
+				<Panel class="FixedRewards">
+					<Label class="AdditionalRewardsLabel" text="#DOTA_HUD_Reward_AdditionalRewards" />				
+					<Panel id="EncounterRewards">
+				        <Panel class="PointsRow XPReward">
+				          <Label class="FixedRewardLabel" text="{d:xp}"/>
+				          <Label class="FixedRewardIcon" text="#DOTA_RewardTooltip_XP"/>
+				        </Panel>
+				       	<Panel class="PointsRow GoldReward" onmouseout="UIHideTextTooltip();" onmouseover="UIShowTextTooltip( #DOTA_RewardTooltip_Gold );">
+				          <Label class="FixedRewardLabel" text="{d:gold}"/>
+				          <Panel class="FixedRewardIcon GoldImage" />
+				        </Panel>
+				       	<Panel class="PointsRow CurrencyReward ArcaneFragments" onmouseout="UIHideTextTooltip();" onmouseover="UIShowTextTooltip( #DOTA_RewardTooltip_ArcaneFragments );">
+				          <Label class="FixedRewardLabel" text="{d:arcane_fragments}"/>
+				          <Panel class="FixedRewardIcon" />
+				        </Panel>				        
+				        <Panel class="PointsRow CurrencyReward BattlePoints" onmouseout="UIHideTextTooltip();" onmouseover="UIShowTextTooltip( #DOTA_RewardTooltip_BattlePoints );">
+				          <Label class="FixedRewardLabel" text="{d:battle_points}"/>
+				          <Panel class="FixedRewardIcon" />
+				        </Panel>
+					</Panel>
+				</Panel>
+			</Panel>	
+		</Panel>
+
+		<Panel id="AghanimScoreboardInfo" hittest="false">
+			<Label class="ScoreboardInfoText" text="#DOTA_HUD_Rewards_Info" />
+		</Panel>
+
+		<Panel id="AghanimRewardsMinimized" class="Hidden" hittest="true" hittestchildren="true" onactivate="ShowAghanimRewardsHUD( true, false )">
+			<Label id="AghanimRewardsMinimizedText" text="#DOTA_HUD_Rewards_ShowRewards" />
+		</Panel>		
+<!--
+		<Panel id="AghanimClaimedRewardsHUD" class="Hidden" hittest="true" hittestchildren="true">
+			<Label id="RewardHeader" text="#DOTA_HUD_Claimed_Rewards_Header"/>
+			<Panel id="RewardCloseButton" class="CloseButton" onactivate="ShowAghanimClaimedRewardsHUD()" oncontextmenu="ShowAghanimClaimedRewardsHUD()"/>
+			<Panel id="ClaimedRewardsContainer">
+			</Panel>
+		</Panel>
+
+
+		<Panel id="ClaimedRewardsMinimizedOuter" class="Hidden" hittest="false">
+				
+			<Panel id="AghanimClaimedRewardsMinimized" hittest="true" hittestchildren="true" onactivate="ShowAghanimClaimedRewardsHUD()">
+				<Label id="AghanimClaimedRewardsMinimizedText" text="Show Claimed Rewards" />
+			</Panel>
+		</Panel>
+-->
+	</Panel>
+</root>
