@@ -16,7 +16,7 @@ function CMapEncounter_PenguinsTransition:constructor( hRoom, szEncounterName )
 	CMapEncounter_BonusBase.constructor( self, hRoom, szEncounterName )
 
 	self.flPenguinTimeLimit = 55.0
-	self:AddSpawner( CDotaSpawner( "penguin_spawner", "penguin_spawner",
+	self:AddSpawner( CDotaSpawner_ExtraPlayerSpawns( "penguin_spawner", "penguin_spawner",
 		{ 
 			{
 				EntityName = "npc_dota_sled_penguin",
@@ -54,7 +54,7 @@ end
 --------------------------------------------------------------------------------
 
 function CMapEncounter_PenguinsTransition:InitializeObjectives()
-	self:AddEncounterObjective( "objective_saddle_up_on_penguin", 0, 4 )
+	self:AddEncounterObjective( "objective_saddle_up_on_penguin", 0, 6 )
 	self:AddEncounterObjective( "objective_sled_to_collect_gold", 0, 0 )
 end
 
@@ -319,7 +319,7 @@ function CMapEncounter_PenguinsTransition:OnPlayerRidePenguin( nPlayerID, hPengu
 		end
 	end
 
-	if nSaddledPlayers >= math.min(4, nPlayerCount) then
+	if nSaddledPlayers >= nPlayerCount then
 		self:DisableBlocker()
 		self:StartBonusRound( self.flPenguinTimeLimit )
 	end

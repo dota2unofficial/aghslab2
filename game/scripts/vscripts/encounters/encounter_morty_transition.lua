@@ -21,7 +21,7 @@ function CMapEncounter_MortyTransition:constructor( hRoom, szEncounterName )
 	self.nGoldPerBag = 25
 	self.flMortyTimeLimit = 45.0
 
-	self:AddSpawner( CDotaSpawner( "morty_spawner", "morty_spawner",
+	self:AddSpawner( CDotaSpawner_ExtraPlayerSpawns( "morty_spawner", "morty_spawner",
 		{ 
 			{
 				EntityName = "npc_aghsfort_morty",
@@ -61,7 +61,7 @@ end
 --------------------------------------------------------------------------------
 
 function CMapEncounter_MortyTransition:InitializeObjectives()
-	self:AddEncounterObjective( "objective_saddle_up_on_morty", 0, 4 )
+	self:AddEncounterObjective( "objective_saddle_up_on_morty", 0, 6 )
 	self:AddEncounterObjective( "objective_jump_to_collect_gold", 0, 0 )
 end
 
@@ -192,7 +192,7 @@ function CMapEncounter_MortyTransition:OnPlayerRideMorty( nPlayerID, hMorty )
 		end
 	end
 
-	if nSaddledPlayers >= math.min(4, nPlayerCount) then
+	if nSaddledPlayers >= nPlayerCount then
 		self:StartBonusRound( self.flMortyTimeLimit )
 		for _,hMorty in pairs ( self.Morties ) do
 			hMorty:RemoveModifierByName( "modifier_morty_start_passive" )

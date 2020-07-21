@@ -171,3 +171,22 @@ end
 function CDotaSpawner:GetLocatorName()
 	return self.szLocatorName
 end
+
+--------------------------------------------------------------------------------
+
+-- Special spawner w/ +2 'vehicle' spawns
+if CDotaSpawner_ExtraPlayerSpawns == nil then
+	CDotaSpawner_ExtraPlayerSpawns = class( {}, {}, CDotaSpawner )
+end
+
+--------------------------------------------------------------------------------
+
+function CDotaSpawner_ExtraPlayerSpawns:OnEncounterLoaded( EncounterInput )
+	CDotaSpawner.OnEncounterLoaded( self, EncounterInput )
+
+	-- Add 2 extra spawners
+	for i = 1, AGHANIM_PLAYERS - 4 do
+		local new_spawn = SpawnEntityFromTableSynchronous("info_target", {origin = self.rgSpawners[i]:GetAbsOrigin() + Vector(-200, 200), Name = self.szLocatorName})
+		table.insert(self.rgSpawners, new_spawn)
+	end
+end
